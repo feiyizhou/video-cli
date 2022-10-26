@@ -2,6 +2,7 @@ package services
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"video-factory/utils"
 )
@@ -39,5 +40,11 @@ func (vs *VideoService) JoinVideo(name string, duration int) (string, error) {
 	for i := 0; i < nums; i++ {
 		contentStr += lineStr
 	}
+	file, err := os.OpenFile("join.txt", os.O_CREATE|os.O_RDWR, 0666)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+	cmdStr := fmt.Sprintf("")
 	return "", nil
 }
