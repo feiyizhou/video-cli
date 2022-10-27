@@ -35,3 +35,16 @@ func GetProcessID(procArgs []string) (string, error) {
 	}
 	return string(bytes), err
 }
+
+func ProcessIsExists(pid string) (bool, error) {
+	cmdStr := fmt.Sprintf("kill -s 0 %s", pid)
+	bytes, err := ExecWithOut(cmdStr)
+	if err != nil {
+		fmt.Println(err)
+		return false, err
+	}
+	if len(bytes) == 0 {
+		return true, err
+	}
+	return false, err
+}
