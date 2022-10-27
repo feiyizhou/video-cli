@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os/exec"
 )
@@ -20,4 +21,17 @@ func ExecWithOut(cmdStr string) ([]byte, error) {
 		return nil, err
 	}
 	return ioutil.ReadAll(closer)
+}
+
+func GetProcessID(procArgs []string) (string, error) {
+	cmdStr := "ps -ef"
+	for _, arg := range procArgs {
+		cmdStr += fmt.Sprintf(" | grep %s", arg)
+	}
+	cmdStr += " | grep -v grep | awk '{print $2}'"
+	bytes, err := ExecWithOut(cmdStr)
+	if err != nil {
+		return "", err
+	}
+	return string(bytes), err
 }

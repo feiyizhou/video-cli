@@ -1,4 +1,4 @@
-package cmds
+package video
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"video-factory/services"
 )
 
-var getCmd = &cobra.Command{
+var GetCmd = &cobra.Command{
 	Use:   "get",
 	Short: "get the information of video",
 	Long:  "get the information of video",
