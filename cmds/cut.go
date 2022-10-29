@@ -1,4 +1,4 @@
-package video
+package cmds
 
 import (
 	"fmt"
@@ -9,11 +9,11 @@ import (
 
 var CutCmd = &cobra.Command{
 	Use:   "cut",
-	Short: "cut video with notify duration",
-	Long:  "cut video with notify duration",
+	Short: "cut material with notify duration",
+	Long:  "cut material with notify duration",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 2 {
-			fmt.Println("please notify the video name and duration...")
+			fmt.Println("please notify the material name and duration...")
 			return
 		}
 		duration, err := strconv.Atoi(args[1])
@@ -21,7 +21,7 @@ var CutCmd = &cobra.Command{
 			fmt.Println(err)
 			return
 		}
-		_, err = services.NewVideoService().CutVideo(args[0], duration)
+		_, err = services.NewCommonService().CutMaterial(args[0], duration)
 		if err != nil {
 			fmt.Println(err)
 			return

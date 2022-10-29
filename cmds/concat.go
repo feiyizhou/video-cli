@@ -1,4 +1,4 @@
-package video
+package cmds
 
 import (
 	"fmt"
@@ -9,11 +9,11 @@ import (
 
 var ConcatCmd = &cobra.Command{
 	Use:   "concat",
-	Short: "concat short video to long video",
-	Long:  "concat short video to long video",
+	Short: "concat short material to long material",
+	Long:  "concat short material to long material",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 2 {
-			fmt.Println("please notify source video and destination video duration...")
+			fmt.Println("please notify source material and destination material duration...")
 			return
 		}
 		name := args[0]
@@ -22,7 +22,7 @@ var ConcatCmd = &cobra.Command{
 			fmt.Println(err)
 			return
 		}
-		_, err = services.NewVideoService().ConcatVideo(name, duration)
+		_, err = services.NewCommonService().ConcatMaterial(name, duration)
 		if err != nil {
 			fmt.Println(err)
 			return
